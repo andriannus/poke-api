@@ -1,5 +1,5 @@
-import 'app';
-import 'index.scss';
+import './app';
+import './index.scss';
 import * as serviceWorker from './serviceWorker';
 
 // If you want your app to work offline and load faster, you can change

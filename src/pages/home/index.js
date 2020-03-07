@@ -15,7 +15,20 @@ const Home = () => {
   });
   const [isShowModal, setIsShowModal] = useState(false);
   const [paginatedPokemon, setPaginatedPokemon] = useState({});
-  const [detailedPokemon, setdetailedPokemon] = useState({});
+  const [detailedPokemon, setDetailedPokemon] = useState({});
+
+  const toggleModalDetail = () => {
+    const html = document.getElementsByTagName('html')[0];
+    const className = 'is-clipped';
+
+    setIsShowModal(!isShowModal);
+
+    if (isShowModal) {
+      html.classList.remove(className);
+    } else {
+      html.classList.add(className);
+    }
+  };
 
   const fetchPaginatedPokemon = url => {
     const source = cancelToken.source();
@@ -69,7 +82,7 @@ const Home = () => {
       ...isLoading,
       fetchPokemon: true,
     });
-    setIsShowModal(true);
+    toggleModalDetail();
 
     const source = cancelToken.source();
 
@@ -80,7 +93,7 @@ const Home = () => {
         });
         const { data } = response;
 
-        setdetailedPokemon(data);
+        setDetailedPokemon(data);
         setIsLoading({
           ...isLoading,
           fetchPokemon: false,
@@ -92,10 +105,6 @@ const Home = () => {
         });
       }
     })();
-  };
-
-  const toggleModalDetail = () => {
-    setIsShowModal(!isShowModal);
   };
 
   useEffect(() => {

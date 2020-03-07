@@ -1,0 +1,13 @@
+$max-width: 480px;
+
+$desktop: $max-width;
+$fullhd: $max-width;
+$widescreen: $max-width;
+$tablet: $max-width;
+$container-offset: 0;
+
+#Main {
+  min-height: 100vh;
+}
+
+@import 'bulma/bulma.sass';

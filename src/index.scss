@@ -1,4 +1,5 @@
 $max-width: 480px;
+$spacer: 1rem;
 
 $desktop: $max-width;
 $fullhd: $max-width;
@@ -10,4 +11,9 @@ $container-offset: 0;
   min-height: 100vh;
 }
 
+.navbar {
+  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2);
+}
+
+@import 'shared/scss/spacing';
 @import 'bulma/bulma.sass';

@@ -7,6 +7,10 @@ const Navbar = loadable(() => {
   return import('shared/components/navbar');
 });
 
+const ButtonBackToTop = loadable(() => {
+  return import('shared/components/button-to-top');
+});
+
 const Main = () => {
   return (
     <>
@@ -15,6 +19,8 @@ const Main = () => {
       <div id="Main" className="container has-background-white">
         <MainRoutes />
       </div>
+
+      <ButtonBackToTop />
     </>
   );
 };

@@ -15,5 +15,16 @@ $container-offset: 0;
   box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2);
 }
 
+#BtnBackToTop {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+
+  &:hover {
+    box-shadow: 0 8px 6px -6px black;
+  }
+}
+
 @import 'shared/scss/spacing';
 @import 'bulma/bulma.sass';

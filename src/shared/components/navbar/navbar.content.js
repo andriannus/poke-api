@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import logo from 'assets/images/pokeapi.png';
+
 const Content = () => {
   return (
     <nav
@@ -19,7 +21,7 @@ const NavbarBrand = () => {
   return (
     <div className="navbar-brand">
       <Link className="navbar-item" to="/">
-        PokeNuz
+        <img src={logo} alt="Poke API" />
       </Link>
     </div>
   );

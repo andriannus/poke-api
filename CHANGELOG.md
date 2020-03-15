@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/andriannus/poke-api/compare/v0.1.2...v0.1.3) (2020-03-15)
+
+
+### Features
+
+* create button-to-top component ([5b2f6f6](https://github.com/andriannus/poke-api/commit/5b2f6f661fb592f3b36b4d11363a430d18c300fa))
+* create filter pokemon ([651c893](https://github.com/andriannus/poke-api/commit/651c89376e2e3020c7d6aa7d475994e231406aba))
+* create loader fetch filter data ([8b3b14c](https://github.com/andriannus/poke-api/commit/8b3b14c61ecd6869f6d493637e17033d41699845))
+* show loader while fetching data filter ([a252761](https://github.com/andriannus/poke-api/commit/a25276123a17d32b216c3f06dfdf33217ab60dbb))
+
 ### [0.1.2](https://github.com/andriannus/poke-api/compare/v0.1.1...v0.1.2) (2020-03-07)
 
 

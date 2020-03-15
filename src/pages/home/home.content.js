@@ -13,9 +13,12 @@ import Modal from 'shared/components/modal';
 import Filter from 'shared/components/filter';
 
 const Content = () => {
-  const { fetchFilterData, fetchFilteredPokemon, filterData } = useContext(
-    HomeContext,
-  );
+  const {
+    fetchFilterData,
+    fetchFilteredPokemon,
+    filterData,
+    isLoading,
+  } = useContext(HomeContext);
 
   return (
     <>
@@ -24,6 +27,7 @@ const Content = () => {
       <div className="mx-2 my-2">
         <Filter
           filterData={filterData}
+          isLoading={isLoading.fetchFilterData}
           onFilterOpened={fetchFilterData}
           onFilterSelected={fetchFilteredPokemon}
         />

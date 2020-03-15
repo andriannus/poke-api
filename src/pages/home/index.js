@@ -9,6 +9,7 @@ const Home = () => {
   const { baseApi, cancelToken } = useAxios();
 
   const [isLoading, setIsLoading] = useState({
+    fetchFilterData: false,
     fetchPokemon: false,
     fetchPokemons: true,
     loadMore: false,
@@ -114,6 +115,11 @@ const Home = () => {
   };
 
   const fetchFilterData = () => {
+    setIsLoading({
+      ...isLoading,
+      fetchFilterData: true,
+    });
+
     const source = cancelToken.source();
 
     (async () => {
@@ -124,8 +130,15 @@ const Home = () => {
         const { data } = response;
 
         setFilterData(data.results);
+        setIsLoading({
+          ...isLoading,
+          fetchFilterData: false,
+        });
       } catch (error) {
-        //
+        setIsLoading({
+          ...isLoading,
+          fetchFilterData: false,
+        });
       }
     })();
   };

@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import FilterContext from 'shared/components/filter/modules/filter.context';
 
+import { LoaderFilter } from 'shared/components/loader';
 import Modal from 'shared/components/modal';
 
 const Content = () => {
@@ -36,6 +37,7 @@ const ButtonFilter = () => {
 
 const ModalFilter = () => {
   const {
+    isLoading,
     isShowModal,
     selectFilter,
     selectedOption,
@@ -52,7 +54,7 @@ const ModalFilter = () => {
         </header>
 
         <div className="card-content">
-          <Options />
+          {isLoading ? <LoaderFilter /> : <Options />}
         </div>
 
         <footer className="card-footer">

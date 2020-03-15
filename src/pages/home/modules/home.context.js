@@ -3,6 +3,7 @@ import React from 'react';
 const HomeContext = React.createContext({
   detailedPokemon: {},
   isLoading: {
+    fetchFilterData: false,
     fetchPokemon: false,
     fetchPokemons: true,
     loadMore: false,

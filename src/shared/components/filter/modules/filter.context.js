@@ -4,7 +4,10 @@ const FilterContext = React.createContext({
   filterData: {},
   isLoading: false,
   isShowModal: false,
-  selectedOption: {},
+  selectedOption: {
+    name: '',
+    url: '',
+  },
   handleFilter: () => {},
   selectFilter: () => {},
   selectOption: () => {},

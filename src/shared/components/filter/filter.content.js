@@ -19,7 +19,8 @@ const Content = () => {
 };
 
 const ButtonFilter = () => {
-  const { handleFilter } = useContext(FilterContext);
+  const { handleFilter, selectedOption } = useContext(FilterContext);
+  const filterName = selectedOption.name || 'Type';
 
   return (
     <button
@@ -30,7 +31,8 @@ const ButtonFilter = () => {
       <span className="icon">
         <FontAwesomeIcon icon={faFilter} />
       </span>
-      <span>Type</span>
+
+      <span className="is-capitalized">{filterName}</span>
     </button>
   );
 };
@@ -62,12 +64,14 @@ const ModalFilter = () => {
             Close
           </a>
 
-          <a
-            className="card-footer-item"
-            onClick={() => selectFilter(selectedOption.url)}
-          >
-            OK
-          </a>
+          {!selectedOption.name ? null : (
+            <a
+              className="card-footer-item"
+              onClick={() => selectFilter(selectedOption.url)}
+            >
+              OK
+            </a>
+          )}
         </footer>
       </div>
     </Modal>
@@ -82,21 +86,27 @@ const Options = () => {
   if (filterData.length < 1) return null;
 
   return (
-    <div className="tags">
-      {filterData.map(data => {
-        return (
-          <a
-            key={data.name}
-            className={`tag is-medium is-capitalized${
-              data.name === selectedOption.name ? ' is-primary' : ''
-            }`}
-            onClick={() => selectOption(data)}
-          >
-            {data.name}
-          </a>
-        );
-      })}
-    </div>
+    <>
+      {selectedOption.name ? null : (
+        <div className="notification is-link">Select Type Filter first</div>
+      )}
+
+      <div className="tags">
+        {filterData.map(data => {
+          return (
+            <a
+              key={data.name}
+              className={`tag is-medium is-capitalized${
+                data.name === selectedOption.name ? ' is-primary' : ''
+              }`}
+              onClick={() => selectOption(data)}
+            >
+              {data.name}
+            </a>
+          );
+        })}
+      </div>
+    </>
   );
 };
 

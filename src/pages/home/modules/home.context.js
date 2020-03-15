@@ -8,7 +8,12 @@ const HomeContext = React.createContext({
     loadMore: false,
   },
   isShowModal: false,
-  paginatedPokemon: {},
+  paginatedPokemon: {
+    count: 0,
+    next: '',
+    previous: '',
+    results: [],
+  },
   fetchDetailedPokemon: () => {},
   fetchPaginatedPokemon: () => {},
   toggleModalDetail: () => {},

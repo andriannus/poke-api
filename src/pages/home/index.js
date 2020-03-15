@@ -14,8 +14,14 @@ const Home = () => {
     loadMore: false,
   });
   const [isShowModal, setIsShowModal] = useState(false);
-  const [paginatedPokemon, setPaginatedPokemon] = useState({});
+  const [paginatedPokemon, setPaginatedPokemon] = useState({
+    count: 0,
+    next: '',
+    previous: '',
+    results: [],
+  });
   const [detailedPokemon, setDetailedPokemon] = useState({});
+  const [filterData, setFilterData] = useState([]);
 
   const toggleModalDetail = () => {
     const html = document.getElementsByTagName('html')[0];
@@ -107,6 +113,67 @@ const Home = () => {
     })();
   };
 
+  const fetchFilterData = () => {
+    const source = cancelToken.source();
+
+    (async () => {
+      try {
+        const response = await baseApi.get('type', {
+          cancelToken: source.token,
+        });
+        const { data } = response;
+
+        setFilterData(data.results);
+      } catch (error) {
+        //
+      }
+    })();
+  };
+
+  const fetchFilteredPokemon = url => {
+    setIsLoading({
+      ...isLoading,
+      fetchPokemons: true,
+    });
+    setPaginatedPokemon({
+      next: '',
+      previous: '',
+      results: [],
+    });
+
+    const source = cancelToken.source();
+
+    (async () => {
+      try {
+        const response = await baseApi.get(url, {
+          cancelToken: source.token,
+        });
+        const { data } = response;
+        const { pokemon } = data;
+
+        const validatedPokemons = pokemon.map(poke => {
+          return poke.pokemon;
+        });
+
+        setPaginatedPokemon({
+          count: pokemon.length,
+          next: '',
+          previous: '',
+          results: validatedPokemons,
+        });
+        setIsLoading({
+          ...isLoading,
+          fetchPokemons: false,
+        });
+      } catch (error) {
+        setIsLoading({
+          ...isLoading,
+          fetchPokemons: false,
+        });
+      }
+    })();
+  };
+
   useEffect(() => {
     fetchPaginatedPokemon();
   }, []);
@@ -115,7 +182,10 @@ const Home = () => {
     <HomeContext.Provider
       value={{
         fetchDetailedPokemon,
+        fetchFilterData,
+        fetchFilteredPokemon,
         fetchPaginatedPokemon,
+        filterData,
         detailedPokemon,
         isLoading,
         isShowModal,

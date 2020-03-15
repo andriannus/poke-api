@@ -10,11 +10,25 @@ import {
   LoaderList,
 } from 'shared/components/loader';
 import Modal from 'shared/components/modal';
+import Filter from 'shared/components/filter';
 
 const Content = () => {
+  const { fetchFilterData, fetchFilteredPokemon, filterData } = useContext(
+    HomeContext,
+  );
+
   return (
     <>
       <Banner />
+
+      <div className="mx-2 my-2">
+        <Filter
+          filterData={filterData}
+          onFilterOpened={fetchFilterData}
+          onFilterSelected={fetchFilteredPokemon}
+        />
+      </div>
+
       <Pokemon />
       <ModalDetail />
     </>

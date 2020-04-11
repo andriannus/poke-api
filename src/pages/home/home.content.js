@@ -41,6 +41,7 @@ const Content = () => {
 
 const Banner = () => {
   const { isLoading, paginatedPokemon } = useContext(HomeContext);
+  const text = `${paginatedPokemon.count} Found`;
 
   return (
     <section className="hero is-dark">
@@ -49,11 +50,7 @@ const Banner = () => {
           <h1 className="title">Pokemon</h1>
 
           <h2 className="subtitle">
-            {isLoading.fetchPokemons ? (
-              <LoaderCount />
-            ) : (
-              `${paginatedPokemon.count} Found`
-            )}
+            {isLoading.fetchPokemons ? <LoaderCount /> : text}
           </h2>
         </div>
       </div>
@@ -153,15 +150,13 @@ const ModalDetail = () => {
 
 const PokemonDetail = () => {
   const { detailedPokemon } = useContext(HomeContext);
+  const { height, name, weight, sprites } = detailedPokemon;
 
   return (
     <div className="media">
       <figure className="media-left">
         <p className="image is-64x64">
-          <img
-            alt={detailedPokemon.name}
-            src={detailedPokemon.sprites.front_default}
-          />
+          <img alt={name} src={sprites.front_default} />
         </p>
       </figure>
 
@@ -169,12 +164,12 @@ const PokemonDetail = () => {
         <div className="content">
           <p>
             <span className="has-text-weight-bold">Height: </span>
-            {detailedPokemon.height}
+            {height}
           </p>
 
           <p>
             <span className="has-text-weight-bold">Weight: </span>
-            {detailedPokemon.weight}
+            {weight}
           </p>
         </div>
       </div>

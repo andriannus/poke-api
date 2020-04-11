@@ -38,7 +38,7 @@ const Home = () => {
   };
 
   const fetchPaginatedPokemon = url => {
-    const source = cancelToken.source();
+    const { token } = cancelToken.source();
     const baseUrl = url || 'pokemon';
 
     if (url) {
@@ -50,10 +50,9 @@ const Home = () => {
 
     (async () => {
       try {
-        const response = await baseApi.get(baseUrl, {
-          cancelToken: source.token,
+        const { data } = await baseApi.get(baseUrl, {
+          cancelToken: token,
         });
-        const { data } = response;
 
         if (!url) {
           setPaginatedPokemon(data);
@@ -91,14 +90,13 @@ const Home = () => {
     });
     toggleModalDetail();
 
-    const source = cancelToken.source();
+    const { token } = cancelToken.source();
 
     (async () => {
       try {
-        const response = await baseApi.get(url, {
-          cancelToken: source.token,
+        const { data } = await baseApi.get(url, {
+          cancelToken: token,
         });
-        const { data } = response;
 
         setDetailedPokemon(data);
         setIsLoading({
@@ -120,14 +118,13 @@ const Home = () => {
       fetchFilterData: true,
     });
 
-    const source = cancelToken.source();
+    const { token } = cancelToken.source();
 
     (async () => {
       try {
-        const response = await baseApi.get('type', {
-          cancelToken: source.token,
+        const { data } = await baseApi.get('type', {
+          cancelToken: token,
         });
-        const { data } = response;
 
         setFilterData(data.results);
         setIsLoading({
@@ -154,14 +151,13 @@ const Home = () => {
       results: [],
     });
 
-    const source = cancelToken.source();
+    const { token } = cancelToken.source();
 
     (async () => {
       try {
-        const response = await baseApi.get(url, {
-          cancelToken: source.token,
+        const { data } = await baseApi.get(url, {
+          cancelToken: token,
         });
-        const { data } = response;
         const { pokemon } = data;
 
         const validatedPokemons = pokemon.map(poke => {

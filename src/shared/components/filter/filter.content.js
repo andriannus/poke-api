@@ -87,7 +87,7 @@ const Options = () => {
 
   return (
     <>
-      {selectedOption.name ? null : (
+      {!selectedOption.name && (
         <div className="notification is-link">Select Type Filter first</div>
       )}
 

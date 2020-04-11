@@ -6,7 +6,7 @@ const Content = ({ onBackToTop }) => {
   return (
     <button
       id="BtnBackToTop"
-      className="button button-to-top is-dark is-medium"
+      className="button is-dark is-medium"
       type="button"
       onClick={onBackToTop}
     >
